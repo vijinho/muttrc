@@ -1,0 +1,4 @@
+.mutt/certificates.asc
+.mutt/cache
+.mutt/aliases.txt
+.mutt/signature.txt

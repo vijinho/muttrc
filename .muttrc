@@ -1,0 +1,152 @@
+set tmpdir="~/tmp"
+#set hostname="example.org"
+
+# IMAP Login Credentials
+set smtp_url='smtp://vijay.mahrra@smtp.gmail.com:587/'
+set imap_user=vijay.mahrra@gmail.com
+set imap_pass=
+set smtp_pass=
+
+# Personal Information
+mailboxes ! Vijay
+my_hdr Reply-To: Vijay Mahrra <vijay.mahrra@gmail.com>
+folder-hook . "my_hdr From: Vijay Mahrra <vijay.mahrra@gmail.com>"
+folder-hook . "my_hdr X-URL: http://about.me/vijay.mahrra"
+my_hdr X-PGP-Key: https://www.yoyo.org/~vijay/vijay_mahrra.asc
+set pgp_sign_as=610356CF
+my_hdr Organization: Yoyo Internet Services
+send-hook . set signature="~/.mutt/signature.txt"
+set alias_file="~/.mutt/aliases.txt"
+
+# Folder Shortcuts
+macro index gi '=INBOX' 'Go to inbox'
+macro index ga '=[Google Mail]/All Mail' 'Go to all mail'
+macro index gd '=[Google Mail]/Drafts' 'Go to drafts'
+macro index gs '=[Google Mail]/Sent Mail' 'Go to Sent Mail'
+
+# Standard Folders
+set folder='imaps://imap.gmail.com:993'
+set spoolfile='+INBOX'
+set trash='+[Google Mail]/Trash'
+set record='+[Google Mail]/Sent Mail'
+set postponed ='+[Google Mail]/Drafts'
+#set any_label='+[Google Mail]/any_label'
+
+#set folder="~/Mail/"
+#set spoolfile="~/Mail"
+#set trash=~/Mail/Trash.mbox
+#set record="~/Mail/.Sent/"
+#set postponed="~/Mail/.Drafts/"
+
+# General Configuration
+auto_view text/html
+bind editor \C? backspace
+bind editor noop
+bind index } bottom-page
+bind index \Cn next-unread
+bind index G imap-fetch-mail
+bind index { top-page
+bind pager G bottom
+color body	blue black "(mailto):"
+color body brightblue black "(http|https|ftp|gopher|mailto|imap)://[^ ]+"
+color body brightcyan black "[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body	brightcyan black "(www|ftp).[^ ]+"
+color body green black "^[^ ]+(:|>)"
+color body	green black "^[^ ]*([:]|[>]|[=]|[_]|[-]|[*])+"
+color body	green black "($)"
+color body	magenta black "[0-9]+[.][0-9]+
+color body	white black "[^a-z]*[A-Z]+[^a-z ]([ ]|\n|\r)"
+color body	yellow black "^[ ]+[^A-Za-z]+:"
+color error brightwhite brightred
+color hdrdefault white black
+color header blue black "^X-.+"
+color header brightcyan black "^(From|Reply-To):"
+color header brightmagenta black "^Subject:"
+color header brightyellow black "^(X-.+[Ss]pam.+)"
+color header cyan black "^(From|To):"
+color header green black "^(Date|Cc):"
+color header green black "^(Organization|X-URL):"
+color header white red "^(Errors-To):"
+color header yellow black "^(X-Mailer|User-Agent):"
+color indicator black brightcyan
+color markers blue white
+color normal white black
+color quoted cyan black
+color signature brightred black
+color status black green
+color tilde green brightblack
+color tree black yellow
+folder-hook sent "set hdr_format='%3C %Z %[%b %d] (%4c) %-10.10a %s'"
+folder-hook sent "set sort=date-sent"
+folder-hook . "set hdr_format='%3C %Z %[%b %d] (%4c) %-20.20n %s'"
+folder-hook . "set index_format='%3C %Z %[%b %d] %-20.20n (%4c) %s'"
+folder-hook . "set sort=threads"
+mono header underline ^(From|Subject):
+mono quoted bold
+set arrow_cursor
+set ascii_chars
+set attribution="On %d, %n saved some trees by (allegedly) scrawling:-"
+#set charset="ISO-8859-1"
+set charset="utf-8"
+set copy=yes
+set crypt_autosign = yes
+set crypt_replyencrypt = yes
+set delete=yes
+set edit_hdrs
+set editor="nano /^$"
+#set editor="vi /^$"
+set fast_reply
+set forw_format="Fwd: %s"
+set hdr_format="%4C %Z %[%b %d] %-15.15L (%4l) %s"
+set imap_keepalive=300
+set include
+set indent_string=": "
+set ispell=ispell
+set mail_check=300
+set mask=""
+set mbox_type=mbox
+set mime_forward=ask-no
+set move=no
+set noconfirmappend
+set nomark_old
+set nomove
+set noprompt_after
+set pager_stop
+set pgp_autosign=no
+set pgp_replyencrypt=no
+set pgp_timeout=3600
+set pgp_use_gpg_agent=yes
+set print_cmd=/bin/false
+set quit=ask-yes
+set quote_regexp="^([>|:}] | {0,4}[>|]|[a-z]+[>|]+ )"
+set read_inc=25
+set reply_to=ask-yes
+set reply_to=yes
+set reverse_alias
+set sort=threads
+set ssl_starttls="no"
+set tilde
+set timeout=15
+
+set write_inc=25
+unignore From: Subject: To: Cc: Date: x-mailer x-url
+unset abort_nosubject
+unset markers
+unset write_bcc
+
+# SpamAssassin Config
+#index H "|sa-learn --ham --no-sync --single"
+#macro index R "|sa-learn --rebuild"
+#macro index S "|sa-learn --spam --no-sync --single"
+#macro pager H "|sa-learn --ham --no-sync --single"
+#macro pager R "|sa-learn --rebuild"
+#macro pager S "|sa-learn --spam --no-sync --single"
+
+# Caching
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates.asc
+
+# Includes 
+source ~/.mutt/aliases.txt
+source ~/.mutt/gpg.conf
