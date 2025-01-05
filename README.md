@@ -1,4 +1,4 @@
-#Mutt Configuration
+# Mutt Configuration
 
 My configuration has the following features:
 
@@ -10,7 +10,7 @@ I've used [The Mutt E-Mail Client](http://dev.mutt.org/doc/manual.html) since 19
 email client ever written.  After recently using it to easily transfer several thousands old emails into gmail
 this is the setup I used - you'll have to change this to your details but it serves as a good example.
 
-##Forward local mail to Gmail
+## Forward local mail to Gmail
 If you have a local SMTP server setup you can create a file in your home
 directory to forward all email to another account, e.g.
 
@@ -19,10 +19,10 @@ directory to forward all email to another account, e.g.
 vijay.mahrra@gmail.com
 </pre>
 
-##installing mutt
-###MacOS X
+## Installing mutt
+### MacOS X
 `brew install mutt`
 
-###Debian/Ubuntu/Linux Mint
+### Debian/Ubuntu/Linux Mint
 `apt-get install mutt`
 
